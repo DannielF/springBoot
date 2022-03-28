@@ -1,5 +1,7 @@
 package com.springboot;
 
+import com.springboot.bean.MyBean;
+import com.springboot.bean.MyBeanWithDependency;
 import com.springboot.component.ComponentDependency;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -12,23 +14,31 @@ public class Application implements CommandLineRunner {
 	/**
 	 * Dependency injection
 	 */
-	private ComponentDependency componentDependency;
+	private final ComponentDependency componentDependency;
+	private final MyBean myBean;
+	private final MyBeanWithDependency myBeanWithDependency;
 
-	public Application(@Qualifier("componentToImplement") ComponentDependency componentDependency) {
+	public Application(@Qualifier("componentToImplement") ComponentDependency componentDependency,
+					   MyBean myBean,
+					   MyBeanWithDependency myBeanWithDependency)
+	{
 		this.componentDependency = componentDependency;
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		this.myBean = myBean;
+		this.myBeanWithDependency = myBeanWithDependency;
 	}
 
 	/**
 	 * Run dependency from another object
 	 * @param args String
-	 * @throws Exception exception
 	 */
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 		componentDependency.greetings();
+		myBean.print();
+		myBeanWithDependency.printWithDependency();
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
 	}
 }
