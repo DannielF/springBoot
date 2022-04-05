@@ -3,6 +3,8 @@ package com.springboot;
 import com.springboot.bean.MyBean;
 import com.springboot.bean.MyBeanWithDependency;
 import com.springboot.component.ComponentDependency;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
+
+	private final Log LOGGER = LogFactory.getLog(Application.class);
 
 	/**
 	 * Dependency injection
@@ -36,6 +40,7 @@ public class Application implements CommandLineRunner {
 		componentDependency.greetings();
 		myBean.print();
 		myBeanWithDependency.printWithDependency();
+		LOGGER.error("Error from Logger");
 	}
 
 	public static void main(String[] args) {
