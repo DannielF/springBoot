@@ -17,3 +17,7 @@ logging:
     root: info
     org.springframework.web: info
     org.hibernate: error
+
+spring:
+  jpa:
+    show-sql: true

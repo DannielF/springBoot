@@ -47,19 +47,4 @@ public class GeneralConfiguration {
         this.lastname = lastname;
     }
 
-    /**
-     * Build a data source
-     * @return DataSource
-     */
-    @Bean
-    public DataSource dataSource() {
-        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
-
-        dataSourceBuilder.driverClassName("org.h2.Driver");
-        dataSourceBuilder.url("jdbc:h2:mem:testdb");
-        dataSourceBuilder.username("test");
-        dataSourceBuilder.password("");
-
-        return dataSourceBuilder.build();
-    }
 }
