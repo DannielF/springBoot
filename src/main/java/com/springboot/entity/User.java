@@ -1,12 +1,27 @@
 package com.springboot.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 public class User {
+    @Id
+    @Column(name = "id", nullable = false)
+    private Long id;
 
     private String name;
     private String email;
     private LocalDate date;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public User() {
     }

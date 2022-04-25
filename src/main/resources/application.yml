@@ -15,8 +15,9 @@ user:
 logging:
   level:
     root: info
-    org.springframework.web: info
-    org.hibernate: error
+    org:
+      springframework.web: info
+      hibernate: error
 
 spring:
   jpa:
