@@ -3,8 +3,12 @@ package com.springboot.configuration;
 import com.springboot.pojo.UserPojo;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
+
+import javax.sql.DataSource;
 
 /**
  * We want to separate configuration from our actual services, controllers and components.
@@ -41,5 +45,21 @@ public class GeneralConfiguration {
 
     public void setLastname(@NonNull String lastname) {
         this.lastname = lastname;
+    }
+
+    /**
+     * Build a data source
+     * @return DataSource
+     */
+    @Bean
+    public DataSource dataSource() {
+        DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
+
+        dataSourceBuilder.driverClassName("org.h2.Driver");
+        dataSourceBuilder.url("jdbc:h2:mem:testdb");
+        dataSourceBuilder.username("test");
+        dataSourceBuilder.password("");
+
+        return dataSourceBuilder.build();
     }
 }
